@@ -52,6 +52,7 @@ jobs:
             -logFile -
 
       - name: Run EditMode tests
+        id: tests
         run: |
           unity test "$GITHUB_WORKSPACE" \
             --editor-version "$UNITY_EDITOR_VERSION" \
@@ -63,6 +64,25 @@ jobs:
             --format github \
             -- \
             -nographics
+
+      - name: Build Windows player
+        if: steps.tests.outcome == 'success'
+        run: |
+          unity build "$GITHUB_WORKSPACE" \
+            --editor-version "$UNITY_EDITOR_VERSION" \
+            --target StandaloneWindows64 \
+            --output-path "$GITHUB_WORKSPACE/Build/Windows/Game.exe" \
+            --allow-install \
+            --allow-dirty-build \
+            --format github
+
+      - name: Upload Windows build
+        if: steps.tests.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: Build/Windows/**
+          if-no-files-found: error
 
       - name: Upload test results
         if: always()
