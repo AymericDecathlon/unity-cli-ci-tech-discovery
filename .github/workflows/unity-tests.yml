@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Unity Editor
         run: |
-          unity install "$UNITY_EDITOR_VERSION" --yes --accept-eula --module windows-il2cpp --childModules
+          unity install "$UNITY_EDITOR_VERSION" --yes --accept-eula --module windows-mono --childModules
           unity editors -i
 
       - name: Activate license (Pro / serial)
@@ -51,6 +51,9 @@ jobs:
             -password "$UNITY_PASSWORD" \
             -logFile -
 
+      - name: List available modules (debug)
+          run: unity install "$UNITY_EDITOR_VERSION" --list-components
+      
       - name: Run EditMode tests
         id: tests
         run: |
