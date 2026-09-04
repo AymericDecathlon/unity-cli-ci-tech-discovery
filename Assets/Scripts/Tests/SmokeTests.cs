@@ -15,5 +15,11 @@ namespace Tests
         {
             Assert.AreEqual(0, 1 - 1);
         }
+        
+        [Test]
+        public void OneTimesOneIsOne()
+        {
+            Assert.AreEqual(1, 1 * 1);
+        }
     }
 }
