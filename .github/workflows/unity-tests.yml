@@ -52,7 +52,8 @@ jobs:
             -logFile -
 
       - name: List available modules (debug)
-          run: unity install "$UNITY_EDITOR_VERSION" --list-components
+        run: |
+          unity install "$UNITY_EDITOR_VERSION" --list-components
       
       - name: Run EditMode tests
         id: tests
