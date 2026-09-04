@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Unity Editor
         run: |
-          unity install "$UNITY_EDITOR_VERSION" --yes --accept-eula
+          unity install "$UNITY_EDITOR_VERSION" --yes --accept-eula --module windows-il2cpp --childModules
           unity editors -i
 
       - name: Activate license (Pro / serial)
