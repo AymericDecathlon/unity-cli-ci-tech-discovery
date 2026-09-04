@@ -9,5 +9,11 @@ namespace Tests
         {
             Assert.AreEqual(2, 1 + 1);
         }
+        
+        [Test]
+        public void OneMinusOneIsZero()
+        {
+            Assert.AreEqual(0, 1 - 1);
+        }
     }
 }
